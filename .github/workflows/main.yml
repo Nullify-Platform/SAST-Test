@@ -1,4 +1,4 @@
-name: delete comments from open-collective-bot
+name: delete comments from user
 on:
   workflow_dispatch:
 jobs:
