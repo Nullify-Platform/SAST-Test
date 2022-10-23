@@ -1,6 +1,7 @@
 from django.db.models.expressions import RawSQL
 from django.contrib.auth.models import User
 
+
 User.objects.annotate(val=RawSQL('secure', []))
 User.objects.annotate(val=RawSQL('%secure' % 'nos', []))
 User.objects.annotate(val=RawSQL('{}secure'.format('no'), []))
