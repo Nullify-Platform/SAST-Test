@@ -295,3 +295,4 @@ router.post('/customers/login', async (req, res) => {
 })
 
 module.exports = router
+
