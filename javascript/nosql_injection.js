@@ -25,29 +25,6 @@ router.post('/customers/register', async (req, res) => {
     
 })
 
-
-// Vulnerable search function
-router.post('/customers/find', async (req, res) => {
-
-    const client = await MongoClient.connect(url, { useNewUrlParser: true })
-        .catch(err => { console.log(err); });
-    if (!client) {
-        return res.json({ status: "Error" });
-    }
-    const db = client.db(config.MONGODB_DB_NAME);
-    const customers = db.collection("customers")
-
-    let name = req.body.name
-    let myobj = { name: name };
-    customers.findOne(myobj, function (err, result) {
-        if (err) throw err;
-        db.close();
-        res.json(result)
-    });
-
-  
-})
-
 // Vulnerable Authentication
 // Authentication Bypass Example
 // curl -X POST http://localhost:3000/customers/login/ --data "{\"email\": {\"\$gt\":\"\"} , \"password\": {\"\$gt\":\"\"}}" -H "Content-Type: application/json"
@@ -99,6 +76,28 @@ router.post('/customers/register', async (req, res) => {
     
 })
 
+
+// Vulnerable search function
+router.post('/customers/find', async (req, res) => {
+
+    const client = await MongoClient.connect(url, { useNewUrlParser: true })
+        .catch(err => { console.log(err); });
+    if (!client) {
+        return res.json({ status: "Error" });
+    }
+    const db = client.db(config.MONGODB_DB_NAME);
+    const customers = db.collection("customers")
+
+    let name = req.body.name
+    let myobj = { name: name };
+    customers.findOne(myobj, function (err, result) {
+        if (err) throw err;
+        db.close();
+        res.json(result)
+    });
+
+  
+})
 
 // Vulnerable search function
 router.post('/customers/find', async (req, res) => {
