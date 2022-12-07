@@ -1,3 +1,0 @@
-[submodule "csharp/csharp/OrchardCore"]
-	path = csharp/csharp/OrchardCore
-	url = git@github.com:OrchardCMS/OrchardCore.git
